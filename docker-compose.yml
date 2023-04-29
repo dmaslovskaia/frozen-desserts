@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  app:
+    ports:
+      - 3000:3000
+    environment:
+      - RAILS_ENV=development
+      - DB_NAME=development.postgres
+      - DB_USER=developer
+      - DB_PASSWORD=developer
+      - DB_HOST=db
+    depends_on:
+      - db
+      - redis
+
+  db:
+    image: postgres:latest
+    volumes:
+      - ./db/data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=developer
+      - POSTGRES_PASSWORD=developer
+      - POSTGRES_DB=development.postgres
+
+  redis:
+    image: redis:latest
