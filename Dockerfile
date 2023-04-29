@@ -3,7 +3,7 @@ FROM ruby:3.2.1-alpine AS builder
 
 RUN apk add \
   build-base \
-  sqlite
+  postgresql-dev
 COPY Gemfile* .
 RUN bundle install
 
@@ -15,7 +15,7 @@ RUN mkdir -p $INSTALL_PATH
 WORKDIR $INSTALL_PATH
 
 RUN apk add \
-  sqlite \
+  postgresql-dev \
   tzdata \
   nodejs
 
