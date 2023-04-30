@@ -36,7 +36,7 @@ auth_token = aws.ecr.get_authorization_token_output(registry_id=ecr_repo.registr
 app_image = docker.Image("frodes",
     build=docker.DockerBuildArgs(
       context="../",
-      dockerfile="./app/Dockerfile",
+      dockerfile="../Dockerfile",
     ),
     image_name=ecr_repo.repository_url.apply(lambda repository_url: f"{repository_url}:latest"),
     registry=docker.RegistryArgs(
@@ -58,7 +58,7 @@ app_lifecycle_policy = aws.ecr.LifecyclePolicy("app-lifecycle-policy",
         "selection": {
           "tagStatus": "untagged",
           "countType": "imageCountMoreThan",
-          "countNumber": 0
+          "countNumber": 1
         },
         "action": {
           "type": "expire"
