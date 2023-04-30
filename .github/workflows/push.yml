@@ -22,6 +22,7 @@ jobs:
       - uses: pulumi/actions@v3
         with:
           command: up
+          work-dir: ./pulumi
           stack-name: dmaslovskaia/frozen-desserts/prod
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
