@@ -29,5 +29,5 @@ COPY ../.. .
 ENTRYPOINT ["./docker-entrypoint.sh"]
 
 # Start the server by default, this can be overwritten at runtime
-EXPOSE 3000
-CMD ["./bin/rails", "server"]
+EXPOSE 80
+CMD ["./bin/rails", "server", "-p", "80"]
