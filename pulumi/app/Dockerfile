@@ -5,7 +5,7 @@ FROM ruby:3.2.1-alpine AS builder
 RUN apk add \
   build-base \
   postgresql-dev
-COPY Gemfile* .
+COPY ../../Gemfile* .
 RUN bundle install
 
 FROM ruby:3.2.1-alpine AS runner
@@ -23,7 +23,7 @@ RUN apk add \
 
 # Copy application files and dependencies from previous step
 COPY --from=builder /usr/local/bundle/ /usr/local/bundle/
-COPY . .
+COPY ../.. .
 
 # Entrypoint prepares the database.
 ENTRYPOINT ["./docker-entrypoint.sh"]
