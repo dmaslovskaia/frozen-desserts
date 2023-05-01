@@ -23,6 +23,6 @@ jobs:
         with:
           command: up
           work-dir: ./pulumi
-          stack-name: dmaslovskaia/frozen-desserts/prod
+          stack-name: dmaslovskaia/auto/dev
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
