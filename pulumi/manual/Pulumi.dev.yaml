@@ -1,0 +1,10 @@
+config:
+  aws:region: us-east-1
+  manual:db_name: app_db
+  manual:db_password:
+    secure: AAABALDtIA7lAc1bqcdIWG93pl7LXHEPNBCNy/Wz4/baEeJbPyvRjXP0QplEXFAPuJZLmg==
+  manual:db_port: "3306"
+  manual:db_user:
+    secure: AAABAAmPgKCS4zT8uLbiRQYLOY91Jt0pRF8v+tIlJ8lfD5+Ml17puSMY6A==
+  manual:service_name: frozen-desserts
+  manual:vpc_cidr_block: 10.100.0.0/16
