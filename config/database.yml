@@ -5,11 +5,10 @@
 #   gem "sqlite3"
 #
 default: &default
-  adapter: postgresql
-  encoding: unicode
+  adapter: mysql2
   username: <%= ENV['DB_USER'] %>
   password: <%= ENV['DB_PASSWORD'] %>
-  port: <%= ENV.fetch("DB_PORT") { "5432" } %>
+  port: <%= ENV.fetch("DB_PORT") { "3306" } %>
   host: <%= ENV['DB_HOST'] %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
