@@ -22,7 +22,7 @@ jobs:
       - uses: pulumi/actions@v3
         with:
           command: up
-          work-dir: ./pulumi
+          work-dir: ./pulumi/auto
           stack-name: dmaslovskaia/auto/dev
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
