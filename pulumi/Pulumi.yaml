@@ -1,6 +1,0 @@
-name: frozen-desserts
-runtime:
-  name: python
-  options:
-    virtualenv: venv
-description: Pipeline for frozen-desserts project
