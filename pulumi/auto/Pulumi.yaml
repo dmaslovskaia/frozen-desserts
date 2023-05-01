@@ -1,0 +1,6 @@
+name: auto
+runtime:
+  name: python
+  options:
+    virtualenv: venv
+description: Manually managed configuration for frozen-desserts service
