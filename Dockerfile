@@ -4,7 +4,7 @@ FROM ruby:3.2.1-alpine AS builder
 # Install related packages and build the application dependencies
 RUN apk add \
   build-base \
-  postgresql-dev
+  mariadb-dev
 COPY Gemfile* .
 RUN bundle install
 
@@ -17,7 +17,7 @@ WORKDIR $APP_PATH
 
 # Install related packages
 RUN apk add \
-  postgresql-dev \
+  mariadb-dev \
   tzdata \
   nodejs
 
@@ -30,4 +30,4 @@ ENTRYPOINT ["./docker-entrypoint.sh"]
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 80
-CMD ["./bin/rails", "server", "-p", "80"]
+CMD ["./bin/rails", "server", "-p", "80", "-b", "0.0.0.0"]
