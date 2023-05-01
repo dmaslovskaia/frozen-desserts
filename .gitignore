@@ -37,4 +37,4 @@
 .idea
 
 *.pyc
-/pulumi/venv/
+/pulumi/*/venv/
