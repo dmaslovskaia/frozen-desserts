@@ -13,8 +13,8 @@ class WebServiceArgs:
     image_name=None,
     role_arn=None,
     cluster_arn=None,
-    task_cpu="1024",
-    task_mem="2048",
+    task_cpu="256",
+    task_mem="512",
     desired_capacity="1",
     subnet_ids=None,  # array of subnet IDs
     security_group_ids=None # array of security group Ids
