@@ -4,8 +4,8 @@ on:
     branches:
       - main
 jobs:
-  update:
-    name: Update
+  pipeline:
+    name: Pipeline for build, test and deploy this service
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -16,8 +16,23 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-region: ${{ secrets.AWS_REGION }}
+          aws-region: ${{ var.AWS_REGION }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v1
+      - name: Build, tag, and push docker image to Amazon ECR
+        env:
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          REPOSITORY: frozen-desserts
+          IMAGE_TAG: latest
+        run: |
+          docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
+          docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+      - uses: addnab/docker-run-action@v3
+        with:
+          image: $REGISTRY/$REPOSITORY:$IMAGE_TAG
+          options: -e RAILS_ENV=test -e LB_HOSTNAME=127.0.0.1
       - run: pip install -r ./pulumi/auto/requirements.txt
       - uses: pulumi/actions@v3
         with:

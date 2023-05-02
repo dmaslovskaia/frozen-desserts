@@ -1,5 +1,6 @@
 config:
   auto:environment: development
+  auto:image_name: 792896289184.dkr.ecr.us-east-1.amazonaws.com/frozen-desserts:latest
   auto:manual_stack: dmaslovskaia/manual/dev
   auto:service_name: frozen-desserts
   aws:region: us-east-1
