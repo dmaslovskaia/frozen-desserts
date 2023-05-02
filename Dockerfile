@@ -6,7 +6,7 @@ RUN apk add \
   build-base \
   sqlite \
   mariadb-dev
-COPY Gemfile* .
+COPY ./Gemfile* .
 RUN bundle install
 
 FROM ruby:3.2.1-alpine AS runner
