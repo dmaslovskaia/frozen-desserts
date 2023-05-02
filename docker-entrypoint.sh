@@ -1,8 +1,12 @@
 #!/bin/sh -e
 
-# If running the rails server then create or migrate existing database
-if [ "${*}" == "./bin/rails server -p 80 -b 0.0.0.0" ]; then
-  ./bin/rails db:prepare
+if [ "$RAILS_ENV" == "test" ] || [ "$RAILS_ENV" == "development" ]; then
+  # if start in dev or test mode migrate database and run rspec tests
+  bundle exec rails db:prepare
+  bundle exec rspec --format documentation --format json --fail-fast
+else
+  # if start in prod mode only migrate database
+  bundle exec rails db:prepare
 fi
 
 exec "${@}"
