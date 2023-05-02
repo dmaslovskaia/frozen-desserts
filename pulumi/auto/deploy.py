@@ -4,6 +4,7 @@ import pulumi_aws as aws
 
 class WebServiceArgs:
   def __init__(self,
+    env="development",
     db_host=None,
     db_port=None,
     db_name=None,
@@ -19,6 +20,7 @@ class WebServiceArgs:
     subnet_ids=None,  # array of subnet IDs
     security_group_ids=None # array of security group Ids
   ):
+    self.env = env
     self.db_host = db_host
     self.db_port = db_port
     self.db_name = db_name
@@ -121,7 +123,7 @@ class WebService(ComponentResource):
           },
           {
             "name": "RAILS_ENV",
-            "value": Config().get("environment")
+            "value": args.env
           },
         ]
       }]),
