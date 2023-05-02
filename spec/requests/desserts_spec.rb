@@ -43,6 +43,7 @@ RSpec.describe "/desserts", type: :request do
 
   describe "GET /new" do
     it "renders a successful response" do
+      Dessert.create! valid_attributes
       get new_dessert_url
       expect(response).to be_successful
     end
