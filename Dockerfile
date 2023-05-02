@@ -4,13 +4,14 @@ FROM ruby:3.2.1-alpine AS builder
 # Install related packages and build the application dependencies
 RUN apk add \
   build-base \
+  sqlite \
   mariadb-dev
 COPY Gemfile* .
 RUN bundle install
 
 FROM ruby:3.2.1-alpine AS runner
 
-# Set default working directory and user
+# Set default working directory
 ENV APP_PATH /app
 RUN mkdir -p $APP_PATH
 WORKDIR $APP_PATH
@@ -18,6 +19,7 @@ WORKDIR $APP_PATH
 # Install related packages
 RUN apk add \
   mariadb-dev \
+  sqlite \
   tzdata \
   nodejs
 
