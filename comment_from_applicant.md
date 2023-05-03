@@ -26,5 +26,5 @@ Acceptance criteria are listed in descending order of importance. Things closer 
 2. it should deploy automatically from github using github actions every time the main branch is updated - check
 3. it should run the specs and fail to deploy if the specs fail - check
 4. it should be available from the internet via http or https - check
-5. it should recreate AWS resources if they are destroyed
-6. it should persist data in a database
+5. it should recreate AWS resources if they are destroyed - check (except db)
+6. it should persist data in a database - check
