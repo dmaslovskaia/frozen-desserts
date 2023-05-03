@@ -37,8 +37,8 @@ jobs:
         env:
           REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         with:
-          image: $REGISTRY/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}
-          options: -e RAILS_ENV=test -e LB_HOSTNAME=127.0.0.1
+          image: "$REGISTRY/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}"
+          options: "-e RAILS_ENV=test -e LB_HOSTNAME=127.0.0.1"
       - run: pip install -r ./pulumi/auto/requirements.txt
       - uses: pulumi/actions@v3
         with:
