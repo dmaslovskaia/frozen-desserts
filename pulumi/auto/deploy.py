@@ -44,13 +44,14 @@ class WebService(ComponentResource):
   ):
     super().__init__("custom:resource:Frontend", name, {}, opts)
 
-    # Create a load balancer to listen for HTTP traffic on port 80.
+    # Create a load balancer to listen for HTTP traffic on port 80
     self.alb = aws.lb.LoadBalancer(f"{name}-app-lb",
       security_groups=args.security_group_ids,
       subnets=args.subnet_ids,
       opts=ResourceOptions(parent=self)
     )
 
+    # Create a target group to adopt the service on 80 port
     app_tg = aws.lb.TargetGroup(f"{name}-app-tg",
       port=80,
       protocol="HTTP",
@@ -66,6 +67,7 @@ class WebService(ComponentResource):
       opts=ResourceOptions(parent=self)
     )
 
+    # Create a load balancer listener
     alb_listener = aws.lb.Listener(f"{name}-app-listener",
       load_balancer_arn=self.alb.arn,
       port=80,

@@ -1,6 +1,7 @@
 from pulumi import ComponentResource, ResourceOptions
 from pulumi_aws import ec2, get_availability_zones
 
+
 # VPC Creating
 class VpcArgs:
   def __init__(self,

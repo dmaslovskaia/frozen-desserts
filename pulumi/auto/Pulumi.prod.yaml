@@ -1,5 +1,0 @@
-config:
-  auto:environment: production
-  auto:manual_stack: dmaslovskaia/manual/prod
-  auto:service_name: frozen-desserts
-  aws:region: us-east-1

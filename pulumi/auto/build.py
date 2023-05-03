@@ -1,3 +1,7 @@
+# This script I didn't use in the end but It's such a pity to just remove it
+# So I'll keep it for possible future use
+# You' should't keep unused file inside your repo like this
+
 from pulumi import ComponentResource, ResourceOptions, Output
 from pulumi_aws import ecr
 import pulumi_docker as docker
@@ -59,4 +63,5 @@ class Build(ComponentResource):
         ]
       }"""
     )
+    
     self.register_outputs({})
