@@ -34,8 +34,6 @@ jobs:
           docker build -t $REGISTRY/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }} .
           docker push $REGISTRY/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}
       - uses: addnab/docker-run-action@v3
-        env:
-          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         with:
           image: "${{ steps.login-ecr.outputs.registry }}/${{ env.REPOSITORY }}:${{ env.IMAGE_TAG }}"
           options: "-e RAILS_ENV=test -e LB_HOSTNAME=127.0.0.1"
@@ -44,6 +42,6 @@ jobs:
         with:
           command: up
           work-dir: ./pulumi/auto
-          stack-name: dmaslovskaia/auto/${{ vars.ENV }}
+          stack-name: dmaslovskaia/auto/dev
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
